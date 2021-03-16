@@ -23,6 +23,7 @@ class SponsorableSlotFactory extends Factory
     public function definition()
     {
         return [
+            'price' => 10000,
             'publish_date' => now()->addMonths(),
         ];
     }

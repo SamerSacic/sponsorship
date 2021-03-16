@@ -22,7 +22,7 @@ class SponsorableFactory extends Factory
     public function definition()
     {
         return [
-
+            'name' => 'Example podcast name',
         ];
     }
 }
