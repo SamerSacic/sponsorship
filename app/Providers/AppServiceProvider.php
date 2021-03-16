@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contracts\PaymentGateway;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Controllers\SponsorableSponsorshipsController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(SponsorableSponsorshipsController::class, function ($app) {
+            return new SponsorableSponsorshipsController($app->make(PaymentGateway::class));
+        });
     }
 
     /**

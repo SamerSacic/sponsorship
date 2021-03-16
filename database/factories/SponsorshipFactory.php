@@ -22,7 +22,9 @@ class SponsorshipFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'email' => 'john.doe@example.org',
+            'company_name' => 'Example company name',
+            'amount' => 10000
         ];
     }
 }
