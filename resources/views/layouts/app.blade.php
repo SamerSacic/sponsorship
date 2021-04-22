@@ -12,10 +12,11 @@
     <!-- Tailwind -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="font-sans antialiased text-black leading-tight">
+<body class="font-sans antialiased">
     <div id="app">
         @yield('content')
     </div>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

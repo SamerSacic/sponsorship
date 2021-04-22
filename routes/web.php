@@ -14,5 +14,10 @@ use App\Http\Controllers\SponsorableSponsorshipsController;
 |
 */
 
+Route::post('/test', function () {
+    return response()->json(['message' => 'Test endpoint hit!'], 201);
+});
+Route::view('/mockup', 'sponsorable-sponsorships.new');
+
 Route::get('/{sponsorableSlug}/sponsorships/new', [SponsorableSponsorshipsController::class, 'new']);
 Route::post('/{sponsorableSlug}/sponsorships', [SponsorableSponsorshipsController::class, 'store']);

@@ -1,13 +1,10 @@
 <?php
 
-
 namespace Tests;
 
-
-use App\Exceptions\PaymentFailedException;
 use App\Models\Charge;
 use Illuminate\Support\Collection;
-
+use App\Exceptions\PaymentFailedException;
 
 class FakePaymentGateway
 {
@@ -28,7 +25,10 @@ class FakePaymentGateway
         if ($token !== $this->validTestToken()) {
             throw new PaymentFailedException;
         }
-        $this->charges->push(new Charge($email, $amount, $description));
+
+        return tap(new Charge($email, $amount, $description), function ($charge) {
+            $this->charges->push($charge);
+        });
     }
 
     public function charges(): Collection
