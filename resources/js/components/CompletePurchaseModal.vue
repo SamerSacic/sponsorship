@@ -7,21 +7,30 @@
           <form action="#" method="POST" @submit.prevent="handleSubmit">
             <label class="block mb-4">
               <span class="block text-gray-800 text-sm font-bold mb-2">Company</span>
-              <input v-model="form.companyName" ref="companyInput" class="block bg-gray-200 rounded px-4 py-2 w-full leading-normal" type="text" placeholder="DigiTechnoSoft Inc.">
+              <input class="block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline"
+                     type="text"
+                     v-model="form.companyName"
+                     ref="companyInput"
+                     placeholder="DigiTechnoSoft Inc."
+                     @keydown.shift.tab.prevent>
             </label>
             <label class="block mb-4">
               <span class="block text-gray-800 text-sm font-bold mb-2">Email</span>
-              <input v-model="form.email" class="block bg-gray-200 rounded px-4 py-2 w-full leading-normal" type="text" placeholder="mail@example.com">
+              <input class="block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline"
+                     type="text"
+                     v-model="form.email"
+                     placeholder="mail@example.com">
             </label>
             <label class="block mb-6">
               <span class="block text-gray-800 text-sm font-bold mb-2">Credit Card</span>
               <stripe-elements ref="cardInput" class="block bg-gray-200 rounded px-4 py-2 w-full leading-normal"></stripe-elements>
             </label>
             <div>
-              <button type="submit" class="block w-full rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 transition-all duration-300 ease-in-out mb-4"
-                :class="{ 'opacity-50': working, 'hover:bg-indigo-400': !working, 'cursor-not-allowed': working }"
-                :disabled="working"
-              >
+              <button class="block w-full rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 transition-all duration-300 ease-in-out mb-4 focus:outline-none focus:shadow-outline-indigo"
+                      type="submit"
+                      :class="{ 'opacity-50': working, 'hover:bg-indigo-400': !working, 'cursor-not-allowed': working }"
+                      :disabled="working"
+                      @keydown.tab.exact.prevent>
                 <span v-if="!working">Pay ${{ amountInDollars }} now</span>
                 <span v-if="working">Processing...</span>
               </button>

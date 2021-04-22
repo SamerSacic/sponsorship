@@ -1,5 +1,11 @@
 <template>
-  <div @click="$emit('input', !selected)" class="bg-white rounded-lg shadow p-4 pr-8 flex group border-2 border-transparent hover:border-indigo-400 select-none cursor-pointer transition-all duration-300 ease-in-out">
+  <div class="bg-white rounded-lg shadow p-4 pr-8 flex group border-2 border-transparent hover:border-indigo-400 select-none cursor-pointer transition-all duration-300 ease-in-out outline-none focus:border-indigo-400"
+       tabindex="0"
+       role="checkbox"
+       :aria-checked="selected ? 'true' : 'false'"
+       @click="toggle"
+       @keydown.space.prevent="toggle"
+    >
     <div class="w-3/4 flex justify-between items-center">
       <div class="flex items-center">
         <img class="block w-16 h-16 mr-4 rounded" :src="sponsorableSlot.image_url" alt="Logo">
@@ -35,6 +41,9 @@
       }
     },
     methods: {
+      toggle() {
+        this.$emit('input', !this.selected)
+      }
     }
   }
 </script>

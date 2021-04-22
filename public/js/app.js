@@ -2088,6 +2088,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2331,7 +2340,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['amount', 'selectedSlots'],
   data: function data() {
     return {
-      modalOpen: false
+      modalOpen: true
     };
   },
   methods: {}
@@ -2375,6 +2384,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2389,7 +2404,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  methods: {}
+  methods: {
+    toggle: function toggle() {
+      this.$emit('input', !this.selected);
+    }
+  }
 });
 
 /***/ }),
@@ -2415,6 +2434,9 @@ __webpack_require__.r(__webpack_exports__);
     this.stripe = Stripe('pk_test_IDr6dVB8Tcy1LdJa4gmKdyK5');
     this.elements = this.stripe.elements();
     this.card = this.elements.create('card', {
+      classes: {
+        focus: 'outline-none shadow-outline'
+      },
       style: {
         base: {
           fontSize: '16px',
@@ -42193,13 +42215,31 @@ var render = function() {
                           ],
                           ref: "companyInput",
                           staticClass:
-                            "block bg-gray-200 rounded px-4 py-2 w-full leading-normal",
+                            "block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline",
                           attrs: {
                             type: "text",
                             placeholder: "DigiTechnoSoft Inc."
                           },
                           domProps: { value: _vm.form.companyName },
                           on: {
+                            keydown: function($event) {
+                              if (
+                                !$event.type.indexOf("key") &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "tab",
+                                  9,
+                                  $event.key,
+                                  "Tab"
+                                )
+                              ) {
+                                return null
+                              }
+                              if (!$event.shiftKey) {
+                                return null
+                              }
+                              $event.preventDefault()
+                            },
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
@@ -42234,7 +42274,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "block bg-gray-200 rounded px-4 py-2 w-full leading-normal",
+                            "block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline",
                           attrs: {
                             type: "text",
                             placeholder: "mail@example.com"
@@ -42278,13 +42318,38 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "block w-full rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 transition-all duration-300 ease-in-out mb-4",
+                              "block w-full rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 transition-all duration-300 ease-in-out mb-4 focus:outline-none focus:shadow-outline-indigo",
                             class: {
                               "opacity-50": _vm.working,
                               "hover:bg-indigo-400": !_vm.working,
                               "cursor-not-allowed": _vm.working
                             },
-                            attrs: { type: "submit", disabled: _vm.working }
+                            attrs: { type: "submit", disabled: _vm.working },
+                            on: {
+                              keydown: function($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "tab",
+                                    9,
+                                    $event.key,
+                                    "Tab"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                if (
+                                  $event.ctrlKey ||
+                                  $event.shiftKey ||
+                                  $event.altKey ||
+                                  $event.metaKey
+                                ) {
+                                  return null
+                                }
+                                $event.preventDefault()
+                              }
+                            }
                           },
                           [
                             !_vm.working
@@ -42546,7 +42611,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 hover:bg-indigo-400 transition-all duration-300 ease-in-out",
+        "rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 hover:bg-indigo-400 transition-all duration-300 ease-in-out focus:outline-none focus:shadow-outline-indigo",
       attrs: { type: "button" },
       on: {
         click: function($event) {
@@ -42600,10 +42665,23 @@ var render = function() {
     "div",
     {
       staticClass:
-        "bg-white rounded-lg shadow p-4 pr-8 flex group border-2 border-transparent hover:border-indigo-400 select-none cursor-pointer transition-all duration-300 ease-in-out",
+        "bg-white rounded-lg shadow p-4 pr-8 flex group border-2 border-transparent hover:border-indigo-400 select-none cursor-pointer transition-all duration-300 ease-in-out outline-none focus:border-indigo-400",
+      attrs: {
+        tabindex: "0",
+        role: "checkbox",
+        "aria-checked": _vm.selected ? "true" : "false"
+      },
       on: {
-        click: function($event) {
-          return _vm.$emit("input", !_vm.selected)
+        click: _vm.toggle,
+        keydown: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "space", 32, $event.key, [" ", "Spacebar"])
+          ) {
+            return null
+          }
+          $event.preventDefault()
+          return _vm.toggle($event)
         }
       }
     },

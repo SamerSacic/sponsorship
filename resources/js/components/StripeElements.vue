@@ -10,6 +10,9 @@
       this.elements = this.stripe.elements()
 
       this.card = this.elements.create('card', {
+        classes: {
+          focus: 'outline-none shadow-outline'
+        },
         style: {
           base: {
             fontSize: '16px',
