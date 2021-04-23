@@ -13,7 +13,7 @@
     props: ['amount', 'selectedSlots'],
     data() {
       return {
-        modalOpen: true,
+        modalOpen: false,
       }
     },
     methods: {

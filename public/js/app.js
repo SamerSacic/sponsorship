@@ -2048,6 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var accounting_js_lib_formatNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! accounting-js/lib/formatNumber */ "./node_modules/accounting-js/lib/formatNumber.js");
 /* harmony import */ var _StripeElements__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StripeElements */ "./resources/js/components/StripeElements.vue");
+/* harmony import */ var _OnClickOutside__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OnClickOutside */ "./resources/js/components/OnClickOutside.vue");
 //
 //
 //
@@ -2097,11 +2098,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    StripeElements: _StripeElements__WEBPACK_IMPORTED_MODULE_1__.default
+    StripeElements: _StripeElements__WEBPACK_IMPORTED_MODULE_1__.default,
+    OnClickOutside: _OnClickOutside__WEBPACK_IMPORTED_MODULE_2__.default
   },
   props: ['open', 'amount', 'selectedSlots'],
   data: function data() {
@@ -2147,10 +2152,11 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    handleFocusOut: function handleFocusOut(e) {
-      if (this.$refs.modal.contains(e.relatedTarget)) {
+    handleClickOutside: function handleClickOutside(e) {
+      if (!this.open) {
         return;
-      } // this.$emit('close')
+      } // TODO: Emit not work when click outside of modal
+      // this.$emit('close')
 
     },
     handleSubmit: function handleSubmit() {
@@ -2313,6 +2319,42 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OnClickOutside.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OnClickOutside.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['do'],
+  mounted: function mounted() {
+    var _this = this;
+
+    var handleClick = function handleClick(e) {
+      if (_this.$el.contains(e.target) || _this.$el === e.target) {
+        return;
+      }
+
+      _this["do"]();
+    };
+
+    document.addEventListener('click', handleClick);
+    this.$once('hook:beforeDestroy', function () {
+      document.removeEventListener('click', handleClick);
+    });
+  },
+  render: function render() {
+    return this.$slots["default"][0];
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PayButton.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PayButton.vue?vue&type=script&lang=js& ***!
@@ -2340,7 +2382,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['amount', 'selectedSlots'],
   data: function data() {
     return {
-      modalOpen: true
+      modalOpen: false
     };
   },
   methods: {}
@@ -41848,6 +41890,44 @@ component.options.__file = "resources/js/components/NewSponsorshipPage.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/OnClickOutside.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/OnClickOutside.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _OnClickOutside_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OnClickOutside.vue?vue&type=script&lang=js& */ "./resources/js/components/OnClickOutside.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+;
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
+  _OnClickOutside_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OnClickOutside.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/PayButton.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/PayButton.vue ***!
@@ -41994,6 +42074,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSponsorshipPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewSponsorshipPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/NewSponsorshipPage.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSponsorshipPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/OnClickOutside.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/OnClickOutside.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OnClickOutside_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OnClickOutside.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OnClickOutside.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OnClickOutside_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -42162,169 +42258,65 @@ var render = function() {
           "fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-20 flex justify-center items-center p-6"
       },
       [
-        _c(
-          "div",
-          {
-            ref: "modal",
-            staticClass:
-              "max-w-md w-full bg-white px-8 py-6 rounded-lg shadow-lg",
-            on: { focusout: _vm.handleFocusOut }
-          },
-          [
-            !_vm.complete
-              ? _c("div", [
-                  _c(
-                    "h2",
-                    {
-                      staticClass:
-                        "font-semibold text-xl text-back text-center mb-4 text-gray-800"
-                    },
-                    [_vm._v("Complete your purchase")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "form",
-                    {
-                      attrs: { action: "#", method: "POST" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.handleSubmit($event)
+        _c("on-click-outside", { attrs: { do: _vm.handleClickOutside } }, [
+          _c(
+            "div",
+            {
+              ref: "modal",
+              staticClass:
+                "max-w-md w-full bg-white px-8 py-6 rounded-lg shadow-lg"
+            },
+            [
+              !_vm.complete
+                ? _c("div", [
+                    _c(
+                      "h2",
+                      {
+                        staticClass:
+                          "font-semibold text-xl text-back text-center mb-4 text-gray-800"
+                      },
+                      [_vm._v("Complete your purchase")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        attrs: { action: "#", method: "POST" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.handleSubmit($event)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("label", { staticClass: "block mb-4" }, [
-                        _c(
-                          "span",
-                          {
-                            staticClass:
-                              "block text-gray-800 text-sm font-bold mb-2"
-                          },
-                          [_vm._v("Company")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.companyName,
-                              expression: "form.companyName"
-                            }
-                          ],
-                          ref: "companyInput",
-                          staticClass:
-                            "block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline",
-                          attrs: {
-                            type: "text",
-                            placeholder: "DigiTechnoSoft Inc."
-                          },
-                          domProps: { value: _vm.form.companyName },
-                          on: {
-                            keydown: function($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "tab",
-                                  9,
-                                  $event.key,
-                                  "Tab"
-                                )
-                              ) {
-                                return null
-                              }
-                              if (!$event.shiftKey) {
-                                return null
-                              }
-                              $event.preventDefault()
-                            },
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "companyName",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "block mb-4" }, [
-                        _c(
-                          "span",
-                          {
-                            staticClass:
-                              "block text-gray-800 text-sm font-bold mb-2"
-                          },
-                          [_vm._v("Email")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.email,
-                              expression: "form.email"
-                            }
-                          ],
-                          staticClass:
-                            "block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline",
-                          attrs: {
-                            type: "text",
-                            placeholder: "mail@example.com"
-                          },
-                          domProps: { value: _vm.form.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "email", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        { staticClass: "block mb-6" },
-                        [
+                      },
+                      [
+                        _c("label", { staticClass: "block mb-4" }, [
                           _c(
                             "span",
                             {
                               staticClass:
                                 "block text-gray-800 text-sm font-bold mb-2"
                             },
-                            [_vm._v("Credit Card")]
+                            [_vm._v("Company")]
                           ),
                           _vm._v(" "),
-                          _c("stripe-elements", {
-                            ref: "cardInput",
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.companyName,
+                                expression: "form.companyName"
+                              }
+                            ],
+                            ref: "companyInput",
                             staticClass:
-                              "block bg-gray-200 rounded px-4 py-2 w-full leading-normal"
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "block w-full rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 transition-all duration-300 ease-in-out mb-4 focus:outline-none focus:shadow-outline-indigo",
-                            class: {
-                              "opacity-50": _vm.working,
-                              "hover:bg-indigo-400": !_vm.working,
-                              "cursor-not-allowed": _vm.working
+                              "block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline",
+                            attrs: {
+                              type: "text",
+                              placeholder: "DigiTechnoSoft Inc."
                             },
-                            attrs: { type: "submit", disabled: _vm.working },
+                            domProps: { value: _vm.form.companyName },
                             on: {
                               keydown: function($event) {
                                 if (
@@ -42339,78 +42331,186 @@ var render = function() {
                                 ) {
                                   return null
                                 }
-                                if (
-                                  $event.ctrlKey ||
-                                  $event.shiftKey ||
-                                  $event.altKey ||
-                                  $event.metaKey
-                                ) {
+                                if (!$event.shiftKey) {
                                   return null
                                 }
                                 $event.preventDefault()
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "companyName",
+                                  $event.target.value
+                                )
                               }
                             }
-                          },
-                          [
-                            !_vm.working
-                              ? _c("span", [
-                                  _vm._v(
-                                    "Pay $" +
-                                      _vm._s(_vm.amountInDollars) +
-                                      " now"
-                                  )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.working
-                              ? _c("span", [_vm._v("Processing...")])
-                              : _vm._e()
-                          ]
-                        ),
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("label", { staticClass: "block mb-4" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "block text-gray-800 text-sm font-bold mb-2"
+                            },
+                            [_vm._v("Email")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.email,
+                                expression: "form.email"
+                              }
+                            ],
+                            staticClass:
+                              "block bg-gray-200 rounded px-4 py-2 w-full leading-normal focus:outline-none focus:shadow-outline",
+                            attrs: {
+                              type: "text",
+                              placeholder: "mail@example.com"
+                            },
+                            domProps: { value: _vm.form.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "email", $event.target.value)
+                              }
+                            }
+                          })
+                        ]),
                         _vm._v(" "),
                         _c(
-                          "p",
-                          {
-                            staticClass:
-                              "text-center text-gray-400 leading-normal"
-                          },
+                          "label",
+                          { staticClass: "block mb-6" },
                           [
-                            _vm._v(
-                              "We'll reach out for your sponsorship information after you've confirmed your purchase."
-                            )
-                          ]
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "block text-gray-800 text-sm font-bold mb-2"
+                              },
+                              [_vm._v("Credit Card")]
+                            ),
+                            _vm._v(" "),
+                            _c("stripe-elements", {
+                              ref: "cardInput",
+                              staticClass:
+                                "block bg-gray-200 rounded px-4 py-2 w-full leading-normal"
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "block w-full rounded px-4 py-2 text-lg font-bold text-white bg-indigo-600 transition-all duration-300 ease-in-out mb-4 focus:outline-none focus:shadow-outline-indigo",
+                              class: {
+                                "opacity-50": _vm.working,
+                                "hover:bg-indigo-400": !_vm.working,
+                                "cursor-not-allowed": _vm.working
+                              },
+                              attrs: { type: "submit", disabled: _vm.working },
+                              on: {
+                                keydown: function($event) {
+                                  if (
+                                    !$event.type.indexOf("key") &&
+                                    _vm._k(
+                                      $event.keyCode,
+                                      "tab",
+                                      9,
+                                      $event.key,
+                                      "Tab"
+                                    )
+                                  ) {
+                                    return null
+                                  }
+                                  if (
+                                    $event.ctrlKey ||
+                                    $event.shiftKey ||
+                                    $event.altKey ||
+                                    $event.metaKey
+                                  ) {
+                                    return null
+                                  }
+                                  $event.preventDefault()
+                                }
+                              }
+                            },
+                            [
+                              !_vm.working
+                                ? _c("span", [
+                                    _vm._v(
+                                      "Pay $" +
+                                        _vm._s(_vm.amountInDollars) +
+                                        " now"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.working
+                                ? _c("span", [_vm._v("Processing...")])
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-center text-gray-400 leading-normal"
+                            },
+                            [
+                              _vm._v(
+                                "We'll reach out for your sponsorship information after you've confirmed your purchase."
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.complete
+                ? _c("div", [
+                    _c(
+                      "h2",
+                      {
+                        staticClass:
+                          "font-semibold text-xl text-back text-center mb-4 text-gray-800"
+                      },
+                      [_vm._v("Thanks")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "text-center text-gray-400 leading-normal"
+                      },
+                      [
+                        _vm._v(
+                          "We'll be reaching out for your sponsorship information via email soon."
                         )
-                      ])
-                    ]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.complete
-              ? _c("div", [
-                  _c(
-                    "h2",
-                    {
-                      staticClass:
-                        "font-semibold text-xl text-back text-center mb-4 text-gray-800"
-                    },
-                    [_vm._v("Thanks")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    { staticClass: "text-center text-gray-400 leading-normal" },
-                    [
-                      _vm._v(
-                        "We'll be reaching out for your sponsorship information via email soon."
-                      )
-                    ]
-                  )
-                ])
-              : _vm._e()
-          ]
-        )
-      ]
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
+      ],
+      1
     )
   ])
 }
