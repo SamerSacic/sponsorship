@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\PaymentFailedException;
 use App\Models\Sponsorable;
 use App\Models\Sponsorship;
-use App\Models\SponsorableSlot;
 use Illuminate\Http\JsonResponse;
 
 class SponsorableSponsorshipsController extends Controller
@@ -32,22 +31,20 @@ class SponsorableSponsorshipsController extends Controller
     public function store($slug): JsonResponse
     {
         try {
+            $sponsorable = Sponsorable::findOrFailBySlug($slug);
+
             request()->validate([
                 'email' => 'required|email',
                 'company_name' => 'required',
                 'payment_token' => 'required',
-                'sponsorable_slots' => ['required', 'array', function($attribute, $value, $fail) {
+                'sponsorable_slots' => ['bail', 'required', 'array', function($attribute, $value, $fail) use ($sponsorable) {
                     if (collect($value)->unique()->count() !== count($value)) {
-                        $fail("You cannot sponsor the same slot more then once");
+                        $fail("You cannot sponsor the same slot more then once.");
                     }
                 }],
             ]);
 
-            $sponsorable = Sponsorable::findOrFailBySlug($slug);
-
-            $slots = $sponsorable->slots()->whereIn('id', request('sponsorable_slots'))->get();
-
-            abort_unless($slots->count() === count(request('sponsorable_slots')), 400);
+            $slots = $sponsorable->slots()->findOrFail(request('sponsorable_slots'));
 
             $this->paymentGateway->charge(request('email'), $slots->sum('price'), request('payment_token'), "{$sponsorable->name} sponsorship");
 
