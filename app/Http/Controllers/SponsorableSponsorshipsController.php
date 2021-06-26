@@ -46,12 +46,12 @@ class SponsorableSponsorshipsController extends Controller
 
             $slots = $sponsorable->slots()->sponsorable()->findOrFail(request('sponsorable_slots'));
 
-            $this->paymentGateway->charge(request('email'), $slots->sum('price'), request('payment_token'), "{$sponsorable->name} sponsorship");
+            $charge = $this->paymentGateway->charge(request('email'), $slots->sum('price'), request('payment_token'), "{$sponsorable->name} sponsorship");
 
             $sponsorship = Sponsorship::create([
                 'email' => request('email'),
                 'company_name' => request('company_name'),
-                'amount' => $slots->sum('price')
+                'amount' => $charge->amount()
             ]);
 
             $slots->each->update(['sponsorship_id' => $sponsorship->id]);

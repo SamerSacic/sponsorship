@@ -28,7 +28,11 @@ class FakePaymentGateway
         if ($token !== $this->validTestToken()) {
             throw new PaymentFailedException;
         }
-        $this->charges->push(new Charge($email, $amount, $description));
+
+        return tap(new Charge($email, $amount, $description), function ($charge) {
+            $this->charges->push($charge);
+        });
+
     }
 
     public function charges(): Collection
