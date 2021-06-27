@@ -11,6 +11,8 @@
 
     <!-- Tailwind -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/8c024546c8.js" crossorigin="anonymous"></script>
 </head>
 <body class="font-sans antialiased text-black leading-tight">
     <div id="app">
