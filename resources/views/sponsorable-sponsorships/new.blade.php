@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="w-1/4 flex justify-end items-center">
-{{--                            <i class="fas fa-check-circle text-2xl text-green-400"></i>--}}
+    {{--                            <i class="fas fa-check-circle text-2xl text-green-400"></i>--}}
                             <i class="fas fa-plus-circle text-2xl text-gray-400 group-hover:text-indigo-600"></i>
                         </div>
                     </div>
@@ -100,6 +100,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="fixed top-0 left-0 bottom-0 right-0 flex justify-center items-center p-6" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="max-w-md w-full shadow-lg bg-white px-8 py-6 rounded-lg">
+            <h2 class="font-semibold text-xl text-black text-center text-gray-700 mb-4">Complete your purchase</h2>
+            <form action="">
+                <label class="block mb-4">
+                    <span class="block mb-2 text-sm font-semibold text-gray-700">Company</span>
+                    <input class="block bg-gray-200 w-full px-4 py-2 rounded leading-normal" type="text" placeholder="DigiTechnoSoft Inc.">
+                </label>
+
+                <label class="block mb-4">
+                    <span class="block mb-2 text-sm font-semibold text-gray-700">Email</span>
+                    <input class="block bg-gray-200 w-full px-4 py-2 rounded leading-normal" type="text" placeholder="example@mail.com">
+                </label>
+
+                <label class="block mb-6">
+                    <span class="block mb-2 text-sm font-semibold text-gray-700">Credit Card</span>
+                    <input class="block bg-gray-200 w-full px-4 py-2 rounded leading-normal" type="text" placeholder="Card number">
+                </label>
+
+                <div>
+                    <button type="submit" class="block w-full rounded-md mb-4 px-5 py-2 leading-normal text-md font-bold text-white bg-indigo-700 hover:bg-indigo-400">Pay $1500 Now</button>
+                    <p class="text-gray-700 text-center leading-normal">We'll reach out for your sponsorship information after you've confirmed your purchase.</p>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
