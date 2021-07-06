@@ -13,9 +13,22 @@
         "@tailwindcss/postcss7-compat": "^2.0.2",
         "autoprefixer": "^9.8.6",
         "axios": "^0.21",
+        "bootstrap": "^4.6.0",
+        "jquery": "^3.6",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
+        "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.32.11",
+        "sass-loader": "^11.0.1",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+        "vue": "^2.6.12",
+        "vue-loader": "^15.9.7",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "accounting-js": "^1.1.1",
+        "date-fns": "^2.22.1"
     }
 }
